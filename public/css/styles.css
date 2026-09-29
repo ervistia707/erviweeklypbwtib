@@ -1,264 +1,327 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 :root {
-    --ungu-gelap: #35152f;
-    --ungu: #602452;
-    --ungu-muda: #8b477d;
+  --plum-950: #1f0a24;
+  --plum-900: #2d1032;
+  --plum-700: #5a1f55;
+  --plum-500: #7d2f6f;
+  --olive-900: #232a11;
+  --olive-700: #4a5a26;
+  --olive-500: #6f7f34;
+  --chartreuse: #b7b13a;
+  --linen: #ece5c4;
+  --linen-dim: #cfc7a2;
 
-    --hijau-gelap: #27351d;
-    --hijau: #59651f;
-    --hijau-muda: #7b8540;
-
-    --cream: #d8cba8;
-    --cream-muda: #f0ead8;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Karla", "Segoe UI", system-ui, sans-serif;
 }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: Georgia, "Times New Roman", serif;
-    background: var(--cream-muda);
-    color: #211c20;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--linen);
+  background-color: var(--plum-950);
+  /* tekstur anyaman kain */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 4px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+a { color: var(--chartreuse); text-underline-offset: 3px; }
+a:hover { color: var(--linen); }
 
-/* NAVBAR */
-
-.navbar {
-    height: 75px;
-    background: var(--ungu-gelap);
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 70px;
-
-    border-bottom: 4px solid var(--hijau);
+:focus-visible {
+  outline: 3px solid var(--chartreuse);
+  outline-offset: 3px;
 }
 
-.logo {
-    color: var(--cream);
-    font-size: 27px;
-    font-weight: bold;
-    letter-spacing: 3px;
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 30px;
+/* ---------- NAVBAR ---------- */
+.nav {
+  background: var(--olive-900);
+  border-bottom: 3px dashed var(--chartreuse);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: .9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.nav__brand {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--linen);
+  text-decoration: none;
+}
+.nav__links { list-style: none; display: flex; gap: .4rem; flex-wrap: wrap; }
+.nav__links a {
+  display: block;
+  padding: .45rem 1rem;
+  color: var(--linen-dim);
+  text-decoration: none;
+  border-radius: 4px;
+}
+.nav__links a:hover { background: var(--olive-700); color: var(--linen); }
+.nav__links a[aria-current="page"] {
+  background: var(--plum-700);
+  color: var(--linen);
+  box-shadow: inset 0 0 0 2px var(--chartreuse);
 }
 
-.nav-menu a {
-    color: var(--cream-muda);
-    text-decoration: none;
-    transition: 0.3s;
+/* ---------- WADAH ---------- */
+.wrap {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  flex: 1;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-    color: var(--hijau-muda);
+/* ---------- PATCH (kotak kain dengan jahitan) ---------- */
+.patch {
+  position: relative;
+  padding: 2rem;
+  background: var(--plum-700);
+  border-radius: 3px;
+  /* jahitan */
+  outline: 2px dashed rgba(183, 177, 58, .65);
+  outline-offset: -10px;
 }
-
-
-/* PROFILE */
-
-.profile-section {
-    min-height: calc(100vh - 125px);
-
-    padding: 70px;
-
-    display: flex;
-    align-items: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(53, 21, 47, 0.98),
-            rgba(39, 53, 29, 0.95)
-        );
+.patch--plum   { background: var(--plum-700); }
+.patch--deep   { background: var(--plum-900); }
+.patch--olive  { background: var(--olive-700); }
+.patch--moss   { background: var(--olive-900); }
+.patch--linen  {
+  background: var(--linen);
+  color: var(--plum-950);
+  outline-color: rgba(45, 16, 50, .45);
 }
+.patch--linen h2, .patch--linen h3 { color: var(--plum-900); }
 
-.profile-container {
-    width: 1100px;
-    max-width: 100%;
-    margin: auto;
+.patch h2 { font-size: 2rem; margin-bottom: .6rem; }
+.patch h3 { font-size: 1.4rem; margin-bottom: .4rem; }
 
-    display: grid;
-    grid-template-columns: 350px 1fr;
-
-    gap: 70px;
-    align-items: center;
+/* susunan patchwork tidak rata, seperti kain perca */
+.quilt {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
 }
+.span-4  { grid-column: span 4; }
+.span-5  { grid-column: span 5; }
+.span-6  { grid-column: span 6; }
+.span-7  { grid-column: span 7; }
+.span-8  { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
 
-
-/* FOTO */
-
-.profile-photo {
-    padding: 12px;
-
-    background: var(--cream);
-
-    border: 1px solid var(--hijau-muda);
-
-    box-shadow: 15px 15px 0 var(--ungu);
+/* ---------- HERO ---------- */
+.hero-title {
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--linen);
 }
-
-.profile-photo img {
-    display: block;
-
-    width: 100%;
-    height: 430px;
-
-    object-fit: cover;
+.hero-sub {
+  font-size: 1.2rem;
+  max-width: 34ch;
+  color: var(--linen-dim);
+  margin-top: 1rem;
 }
-
-
-/* TEXT */
-
-.profile-info {
-    color: var(--cream-muda);
-}
-
-.small-title {
-    color: var(--hijau-muda);
-
-    font-size: 13px;
-    letter-spacing: 4px;
-
-    margin-bottom: 15px;
-}
-
-.profile-info h1 {
-    font-size: 55px;
-    line-height: 1.1;
-
-    margin-bottom: 25px;
-}
-
-.profile-info h1 span {
-    color: var(--hijau-muda);
-}
-
-.description {
-    color: #ddd5bd;
-
-    font-size: 17px;
-    line-height: 1.8;
-
-    max-width: 600px;
-
-    margin-bottom: 30px;
-}
-
-
-/* BIODATA */
-
-.biodata {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 15px;
-
-    margin-bottom: 30px;
-}
-
-.data {
-    padding: 15px 18px;
-
-    background: rgba(255,255,255,0.06);
-
-    border-left: 3px solid var(--hijau);
-}
-
-.data strong {
-    display: block;
-
-    color: var(--hijau-muda);
-
-    font-size: 12px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 5px;
-}
-
-.data p {
-    color: var(--cream);
-
-    font-size: 16px;
-}
-
-
-/* BUTTON */
 
 .btn {
-    display: inline-block;
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: .75rem 1.5rem;
+  background: var(--chartreuse);
+  color: var(--plum-950);
+  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  border: 0;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: var(--linen); color: var(--plum-950); }
+.btn--ghost {
+  background: transparent;
+  color: var(--linen);
+  box-shadow: inset 0 0 0 2px var(--linen-dim);
+  margin-left: .5rem;
+}
+.btn--ghost:hover { background: var(--linen); }
 
-    padding: 13px 27px;
-
-    background: var(--hijau);
-
-    color: white;
-
-    text-decoration: none;
-
-    transition: 0.3s;
+/* ---------- FOTO PROFIL ---------- */
+.foto {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 3px;
+  background: var(--olive-900);
+  display: grid;
+  place-items: center;
+  color: var(--linen-dim);
+  font-family: var(--font-display);
+  font-size: 5rem;
 }
 
-.btn:hover {
-    background: var(--ungu-muda);
-    transform: translateY(-3px);
+/* ---------- DATA DIRI (daftar) ---------- */
+.data { display: grid; grid-template-columns: max-content 1fr; gap: .7rem 1.5rem; }
+.data dt { color: var(--chartreuse); font-weight: 700; }
+.data dd { color: var(--linen); }
+
+/* ---------- TAG / KETERAMPILAN ---------- */
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.tags li {
+  padding: .3rem .9rem;
+  background: var(--olive-900);
+  border: 1px solid var(--olive-500);
+  border-radius: 999px;
+  font-size: .95rem;
 }
 
+/* ---------- RIWAYAT PENDIDIKAN ---------- */
+.riwayat { list-style: none; border-left: 3px dashed var(--chartreuse); padding-left: 1.5rem; }
+.riwayat li { margin-bottom: 1.4rem; position: relative; }
+.riwayat li::before {
+  content: "";
+  position: absolute;
+  left: -2.05rem;
+  top: .5rem;
+  width: 13px; height: 13px;
+  background: var(--chartreuse);
+  border-radius: 50%;
+}
+.riwayat strong { display: block; font-size: 1.15rem; }
+.riwayat span { color: var(--linen-dim); }
 
-/* FOOTER */
+/* ---------- BERITA ---------- */
+.berita-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
+.berita-list article { display: flex; flex-direction: column; }
+.berita-list time { font-size: .9rem; color: var(--linen-dim); margin-bottom: .5rem; }
+.berita-list p { flex: 1; }
+.berita-list a.more { margin-top: 1rem; font-weight: 700; }
 
-footer {
-    background: var(--ungu-gelap);
-
-    color: var(--cream);
-
-    text-align: center;
-
-    padding: 22px;
+/* ---------- FORM KONTAK ---------- */
+.form label { display: block; font-weight: 700; margin: 1rem 0 .3rem; }
+.form input, .form textarea {
+  width: 100%;
+  padding: .75rem 1rem;
+  font: inherit;
+  color: var(--linen);
+  background: var(--plum-950);
+  border: 2px solid var(--olive-500);
+  border-radius: 4px;
+}
+.form input:focus, .form textarea:focus { border-color: var(--chartreuse); outline: none; }
+.form textarea { min-height: 150px; resize: vertical; }
+.form .error { color: #ffb4a8; font-size: .9rem; margin-top: .3rem; }
+.alert {
+  padding: 1rem 1.25rem;
+  background: var(--olive-700);
+  border-left: 5px solid var(--chartreuse);
+  margin-bottom: 1.2rem;
+  border-radius: 3px;
 }
 
-footer span {
-    color: var(--hijau-muda);
+.kontak-list { list-style: none; }
+.kontak-list li { margin-bottom: .9rem; }
+.kontak-list b { display: block; color: var(--chartreuse); }
+
+/* ---------- JUDUL HALAMAN ---------- */
+.page-title { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 2rem; }
+
+/* ---------- FOOTER ---------- */
+.footer {
+  background: var(--olive-900);
+  border-top: 3px dashed var(--chartreuse);
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--linen-dim);
+  font-size: .95rem;
 }
 
-
-/* RESPONSIVE */
-
+/* ---------- RESPONSIF ---------- */
 @media (max-width: 800px) {
+  .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+  .foto { max-width: 320px; }
+}
 
-    .navbar {
-        padding: 0 25px;
-    }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
-    .nav-menu {
-        gap: 12px;
-    }
 
-    .profile-section {
-        padding: 50px 25px;
-    }
+/* ---------- KARTU MENU DI BERANDA (bisa diklik) ---------- */
+.link-patch {
+  display: block;
+  color: var(--linen);
+  text-decoration: none;
+  transition: transform .15s ease, outline-color .15s ease;
+}
+.link-patch h2 { color: var(--linen); }
+.link-patch p { color: var(--linen-dim); }
+.link-patch .go {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--chartreuse);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.link-patch:hover { transform: translateY(-4px); color: var(--linen); outline-color: var(--linen); }
+.link-patch:hover .go { color: var(--linen); }
 
-    .profile-container {
-        grid-template-columns: 1fr;
-    }
+.patch--linen.link-patch h2 { color: var(--plum-900); }
+.patch--linen.link-patch p  { color: var(--plum-950); }
+.patch--linen.link-patch .go { color: var(--plum-700); }
 
-    .profile-photo {
-        max-width: 350px;
-        margin: auto;
-    }
+/* ---------- BACA SELENGKAPNYA (tanpa JavaScript) ---------- */
+details.baca { margin-top: 1rem; }
+details.baca summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--chartreuse);
+  list-style-position: inside;
+}
+details.baca summary:hover { color: var(--linen); }
+details.baca p { margin-top: .8rem; }
 
-    .profile-info h1 {
-        font-size: 40px;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .link-patch { transition: none; }
+  .link-patch:hover { transform: none; }
+}
+
+
+/* ---------- TARGET & MOTTO ---------- */
+.target { list-style: none; }
+.target li { margin-bottom: 1rem; }
+.target li:last-child { margin-bottom: 0; }
+.target strong { display: block; color: var(--chartreuse); }
+
+.motto {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--plum-900);
 }

@@ -9,7 +9,7 @@
         Nama : {{ $name }} <br>
         NIM : {{ $nim }} <br>
         Prodi : {{ $prodi }} <br>
-        Gambar : {{ $gambar }} <br>
+        
     </p>
 
     <img src="{{ asset('images/' . $gambar) }}" 
